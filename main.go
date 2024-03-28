@@ -34,7 +34,7 @@ func main() {
 	        return
 	    }
 
-	    foundOutline := false
+	    foundVpn := false
 	    foundTorrent := false
 
 	    for x := range processList {
@@ -42,19 +42,19 @@ func main() {
 	        process = processList[x]
 	        log.Printf("%d\t%s\n", process.Pid(), process.Executable())
 
-	        if strings.EqualFold(process.Executable(), "outline.exe") {
-	        	foundOutline = true
+	        if strings.EqualFold(process.Executable(), "wireguard.exe") {
+	        	foundVpn = true
 	        }
 	        if strings.EqualFold(process.Executable(), "qbittorrent.exe") {
 	        	foundTorrent = true
 	        }
 	    }
 
-	    if foundOutline && foundTorrent {
+	    if foundVpn && foundTorrent {
 	    	killQBitTorrent()
 	    	log.Println("QBitTorrent stopped")
 	    } else {
-	    	log.Println("Outline or QBitTorrent not running")
+	    	log.Println("Wireguard or QBitTorrent not running")
 	    }
 
 		time.Sleep(10 * time.Second) 
