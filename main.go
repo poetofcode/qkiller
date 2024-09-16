@@ -42,6 +42,9 @@ func main() {
 	        process = processList[x]
 	        log.Printf("%d\t%s\n", process.Pid(), process.Executable())
 
+            if strings.EqualFold(process.Executable(), "outline.exe") {
+                foundVpn = true
+            }
 	        if strings.EqualFold(process.Executable(), "wireguard.exe") {
 	        	foundVpn = true
 	        }
